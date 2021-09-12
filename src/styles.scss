@@ -1,15 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap");
 
-.c-app {
+$palettes: (
+  primary: (
+    paleBlue:  hsl(225, 100%, 94%),
+    brightBlue:  hsl(245, 75%, 52%),
+    brightPurple: hsl(245, 83%, 68%),
+    ),
+  neutral: (
+    white: hsl(225, 100%, 100%),
+    veryPaleBlue: hsl(225, 100%, 98%),
+    veryPalePurple: hsl(225, 78%, 93%),
+    desaturatedBlue: hsl(224, 23%, 55%),
+    darkBlue: hsl(223, 47%, 23%),
+  )
+);
+
+:root {
+  @each $colorname, $palette in $palettes {
+      @each $key, $value in $palette {
+          $keyname: "--palette-" + $colorname + "-" + $key;
+          #{$keyname}: #{$value};
+      }
+  }
+}
+
+body, html {
+  font-size: 16px;
   font-family: "Red Hat Display", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.c-app {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: #e0e8ff;
+  background-color: var(--palette-primary-paleBlue);
   position: relative;
   z-index: 1;
-  font-size: 16px;
   align-items: center;
 
   @media screen and (max-height: 735px) {
@@ -34,7 +63,7 @@
   align-items: flex-start;
   flex-direction: column;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: var(--palette-neutral-white);
   box-shadow: 0px 40px 40px -20px rgba(13, 48, 189, 0.151826);
   overflow: hidden;
   z-index: 3;
@@ -73,7 +102,7 @@
      font-weight: 900;
      font-size: 1.75rem;
      line-height: 2rem;
-     color: #1F2E55;
+     color: var(--palette-neutral-darkBlue);
   }
 
   &__description {
@@ -84,13 +113,13 @@
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.62rem;
-    color: #717FA6;
+    color: var(--palette-neutral-desaturatedBlue);
   }
 }
 
 .c-plan {
   margin-bottom: 32px;
-  background: #F7F9FF;
+  background: var(--palette-neutral-veryPaleBlue);
   border-radius: 11px;
   display: flex;
   flex-direction: row;
@@ -109,7 +138,7 @@
   }
 
   &__icon {
-    background-color: #DFE6FB;
+    background-color: var(--palette-neutral-veryPalePurple);
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -126,7 +155,7 @@
       font-weight: 900;
       font-size: 1rem;
       line-height: 1.31rem;
-      color: #1F2E55;
+      color: var(--palette-neutral-darkBlue);
       padding-bottom: 5px;
     }
 
@@ -134,7 +163,7 @@
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.31rem;
-      color: #717FA6;
+      color: var(--palette-neutral-desaturatedBlue);
     }
   }
 
@@ -143,7 +172,7 @@
     line-height: 1.18rem;
     font-weight: 700;
     text-decoration-line: underline;
-    color: #382AE1;
+    color: var(--palette-primary-brightBlue);
     cursor: pointer;
     transition: color 0.5s, text-decoration-line 1s;
     margin: 0;
@@ -154,7 +183,7 @@
     }
 
     &:hover {
-      color: #766CF1;
+      color: var(--palette-primary-brightPurple);
       text-decoration-line: none;
     }
   }
@@ -164,7 +193,7 @@
   letter-spacing: -0.01rem;
 
   &__payment {
-    background-color: #382AE1;
+    background-color: var(--palette-primary-brightBlue);
     box-shadow: 0px 20px 20px rgba(56, 42, 225, 0.190291);
     border-radius: 11px;
     font-weight: 700;
@@ -172,13 +201,13 @@
     line-height: 1.25rem;
     height: 50px;
     border: 0;
-    color: #FFFFFF;
+    color: var(--palette-neutral-white);
     margin-bottom: 32px;
     cursor: pointer;
     transition:  background-color 0.5s;
 
     &:hover {
-      background-color: #766CF1;
+      background-color: var(--palette-primary-brightPurple);
     }
   }
 
@@ -188,13 +217,13 @@
     font-weight: 700;
     font-size: 0.94rem;
     line-height: 1.25rem;
-    color: #717FA6;
+    color: var(--palette-neutral-desaturatedBlue);
     cursor: pointer;
     margin-bottom: 0;
     transition: color 0.5s;
 
     &:hover {
-      color: #1F2E55;
+      color: var(--palette-neutral-darkBlue);
     }
   }
 }
